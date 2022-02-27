@@ -15,7 +15,7 @@ int temp2 = 0;
 
 void setup() {
 
-  //ADS.begin();
+  ADS.begin();
   
   nexInit(115200L);
   Serial.begin(9600);
@@ -24,19 +24,22 @@ void setup() {
 void loop() {
   delay(20);
 
-  // ADS.setGain(0);
-  // int16_t val_0 = ADS.readADC(0);
-  // float f = ADS.toVoltage(1);  // voltage factor
-  // Serial.print("\tAnalog0: "); Serial.print(val_0); Serial.print('\t'); Serial.println(val_0 * f, 3);
+  ADS.setGain(0);
+  int16_t val_0 = ADS.readADC(0);
+  float f = ADS.toVoltage(1);  // voltage factor
+  Serial.print("\tAnalog0: "); Serial.print(val_0); Serial.print('\t'); Serial.println(val_0 * f, 3);
 
-  if(temp1 <= 110)
+  if(temp2 <= 110)
   {
-    temp1=temp1+2;
+    //temp1=temp1+2;
     temp2=temp2+1;
   }else{
-    temp1=0;
+    //temp1=0;
     temp2=0;
   }
+
+  temp1 = ((val_0-(5754))/(546/5));
+
   p0_n0.setValue(temp1);
-  p0_n1.setValue(temp2);
+  p0_n1.setValue(420);
 }
