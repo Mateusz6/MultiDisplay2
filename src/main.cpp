@@ -6,8 +6,6 @@
 
 ADS1115 ADS(0x49); // sensor type and adress definition, purple sensor with adr pin pulled up, adress 0x49
 
-
-
 int i1State = 0;//state of the 5-pin input, 0 - nothing connected, 1 - temp sensor connected, 2 - temp and preassure sensor
 int i2State = 0;
 
@@ -18,7 +16,8 @@ void setup() {
 
   ADS.begin();
   Serial.begin(9600);
-  NexInitialize();
+  
+  NexScreenInitialize();
 }
 
 void loop() {
@@ -33,7 +32,8 @@ void loop() {
   //temp_0 = ((val_0-(5754))/(546/5));
   //temp_1 = val_1;
 
-  NexSensorDataUp(0,0,0,0,0,0,0,0);
+  
 
   //Serial.println(val_0);
+  //NexSensorDataUp(0,0,0,0,0,0,0,0);
 }
