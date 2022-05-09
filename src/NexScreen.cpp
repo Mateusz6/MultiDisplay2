@@ -128,6 +128,26 @@ void NexScreenInitialize()
     pressUnit = 1;
 }
 
+int getChannelState(int16_t val0, int16_t val1)
+{
+    if(val1 > 16000 && val1 < 20000 && val0 > 5000 && val0 < 16000) // based on tested valued for diffrient sensors
+    {
+        return 1; // meaning that temperature sensor is connected
+    }
+        else if(val0 > 2000 && val0 < 16000 && val1 > 1000 && val1 < 15000) // based on tested valued for diffrient sensors
+    {
+        return 2; // meaning that preassure and temp sensor is connected
+    }
+        else if(val0 > 16000 && val0 < 20000 && val1 > 16000 && val1 < 20000) // from testing, free pins cause reading of 17632, range of 16'000 - 20'000 is supposed to catch that value
+    {
+        return 0; // meaning that nothing is connected
+    }
+    else
+    {
+        return 0;
+    }
+}
+
 void NexSensorStatusUp(int i0s, int i1s, int i2s, int i3s)
 {
     p5_debug_n0s.setValue(i0s);

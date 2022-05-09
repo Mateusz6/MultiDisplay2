@@ -19,6 +19,7 @@ void p5_CTU_PopCallback(void *ptr);
 void p5_CPU_PopCallback(void *ptr);
 
 void NexScreenInitialize();
+int getChannelState(int16_t val0, int16_t val1);
 void NexScreenUnitsUp(int t, int p);
 void NexSensorStatusUp(int i0s, int i1s, int i2s, int i3s);
 void NexSensorDataUp(SensorDataS& data);
