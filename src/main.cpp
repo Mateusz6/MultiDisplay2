@@ -23,11 +23,11 @@ void setup() {
   Serial.begin(9600);
   
   NexScreenInitialize();
-  
+
   delay(1000);
 
   i0State = getChannelState(ADS.readADC(0), ADS.readADC(1));
-  i1State = 0;//getChannelState(ADS.readADC(0), ADS.readADC(1));
+  i1State = getChannelState(ADS.readADC(2), ADS.readADC(3));
   i2State = 0;//getChannelState(ADS.readADC(0), ADS.readADC(1));
   i3State = 0;//getChannelState(ADS.readADC(0), ADS.readADC(1));
 
