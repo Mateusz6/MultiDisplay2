@@ -7,6 +7,7 @@ struct SensorDataS // definition is in main.cpp, this was delcared here to make 
 {
   int c0s0, c0s1, c1s0, c1s1, c2s0, c2s1, c3s0, c3s1; // these are raw values, to ger real values they must be divided by 100
 };
+void p5_debug_PopCallback(void *ptr);
 void T_1_1_PopCallback(void *ptr);
 void T_1_2_PopCallback(void *ptr);
 void T_1_3_PopCallback(void *ptr);

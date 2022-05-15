@@ -96,6 +96,7 @@ int pressUnit = 1; // press unit, 1 - metric (BAR), 2 - imperial (PSI)
 
 NexTouch *nex_listen_list[] = 
 {
+    &p5_debug,
     &T_1_1,
     &T_1_2,
     &T_1_3,
@@ -113,6 +114,7 @@ void NexScreenInitialize()
 {
     //nexInit(115200L);
     nexInit(256000);
+    p5_debug.attachPop(p5_debug_PopCallback);
     T_1_1.attachPop(T_1_1_PopCallback);
     T_1_2.attachPop(T_1_2_PopCallback);
     T_1_3.attachPop(T_1_3_PopCallback);
@@ -134,7 +136,7 @@ int getChannelState(int16_t val0, int16_t val1)
     {
         return 1; // meaning that temperature sensor is connected
     }
-        else if(val0 > 2000 && val0 < 16000 && val1 > 1000 && val1 < 15000) // based on tested valued for diffrient sensors
+        else if(val0 > 2000 && val0 < 16000 && val1 > 300 && val1 < 15000) // based on tested valued for diffrient sensors
     {
         return 2; // meaning that preassure and temp sensor is connected
     }
@@ -259,7 +261,12 @@ void nexLoop()
     nexLoop (nex_listen_list);
 }
 
-//callback functions used for page detection
+//callback functions used for page dete
+void p5_debug_PopCallback(void *ptr)
+{
+    currentPage = 1;
+}
+
 void T_1_1_PopCallback(void *ptr)
 {
     currentPage = 2;
