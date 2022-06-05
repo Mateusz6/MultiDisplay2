@@ -22,15 +22,16 @@ int16_t val_00, val_01, val_02, val_03, val_10, val_11, val_12, val_13;
 
 SensorDataS SensorData;
 
-void calcData(int inputState, int tempUnit, int pressUnit, int& temp, int& press, int16_t valT, int16_t valP)
+void calcData(int inputState, int tempUnit, int pressUnit, int& temp, int& press, int16_t val1, int16_t val2)
 {
   if(inputState == 1){
-    temp = (((valT*100)-(575400))/109); // calculating temperature, assuming that temp-only sensor is connected, unit - Celcius
+    temp = (((val1*100)-(575400))/109); // calculating temperature, assuming that temp-only sensor is connected, unit - Celcius
   }
   else if(inputState == 2)
   {
-    temp = 4444;
-    press = 7777;
+    temp = (((10932 - val2)/113)*100);
+    //press = ((val1-3800)/40);
+    press = val1;
   }
   else
   {
@@ -60,7 +61,7 @@ void setup() {
   i3State = getChannelState(ADS1.readADC(2) + ADS1offset, ADS1.readADC(3) + ADS1offset);
 
   SensorData.c0s0=66;
-  SensorData.c0s1=666;
+  SensorData.c0s1=-666;
   SensorData.c1s0=420;
   SensorData.c1s1=2137;
   SensorData.c2s0=66;
@@ -96,7 +97,7 @@ void loop() {
   SensorData.c3s0 = temp_3;
   SensorData.c3s1 = press_3;
 
-  Serial.println(val_10);
+  Serial.println(press_0);
   NexSensorStatusUp(i0State, i1State, i2State, i3State);
   NexScreenUnitsUp(tempUnit, pressUnit);
   NexSensorDataUp(SensorData);

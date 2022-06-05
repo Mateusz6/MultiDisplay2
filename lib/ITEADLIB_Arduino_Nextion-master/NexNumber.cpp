@@ -33,7 +33,7 @@ bool NexNumber::setValue(uint32_t number)
     char buf[10] = {0};
     String cmd;
     
-    utoa(number, buf, 10);
+    itoa(number, buf, 10);
     cmd += getObjName();
     cmd += ".val=";
     cmd += buf;
