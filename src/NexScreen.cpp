@@ -113,16 +113,16 @@ NexTouch *nex_listen_list[] =
 void NexScreenInitialize()
 {
     //nexInit(115200L);
-    nexInit(256000);
+    nexInit(250000);
     p5_debug.attachPop(p5_debug_PopCallback);
     T_1_1.attachPop(T_1_1_PopCallback);
     T_1_2.attachPop(T_1_2_PopCallback);
     T_1_3.attachPop(T_1_3_PopCallback);
     T_1_4.attachPop(T_1_4_PopCallback);
-    T_2_1.attachPop(T_1_1_PopCallback);
-    T_2_2.attachPop(T_1_2_PopCallback);
-    T_2_3.attachPop(T_1_3_PopCallback);
-    T_2_4.attachPop(T_1_4_PopCallback);
+    T_2_1.attachPop(T_2_1_PopCallback);
+    T_2_2.attachPop(T_2_2_PopCallback);
+    T_2_3.attachPop(T_2_3_PopCallback);
+    T_2_4.attachPop(T_2_4_PopCallback);
     p5_CTU.attachPop(p5_CTU_PopCallback);
     p5_CPU.attachPop(p5_CPU_PopCallback);
     currentPage = 1;
